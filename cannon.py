@@ -2,6 +2,7 @@
 
 Exercises
 
+(done)
 1. Keep score by counting target hits.
 2. Vary the effect of gravity.
 3. Apply gravity to the targets.
@@ -16,7 +17,7 @@ from freegames import vector
 ball = vector(-200, -200)
 speed = vector(0, 0)
 targets = []
-
+score = 0 
 
 def tap(x, y):
     """Respond to screen tap."""
@@ -44,11 +45,16 @@ def draw():
         goto(ball.x, ball.y)
         dot(6, 'red')
 
+    goto(-60, 170)
+    color('black')
+    write(f'Score: {score}', font = ('Courier', 14, 'bold'))
+
     update()
 
 
-def move():
+def move():    
     """Move ball and targets."""
+    global score
     if randrange(40) == 0:
         y = randrange(-150, 150)
         target = vector(200, y)
@@ -67,6 +73,9 @@ def move():
     for target in dupe:
         if abs(target - ball) > 13:
             targets.append(target)
+
+        else:
+            score += 1
 
     draw()
 

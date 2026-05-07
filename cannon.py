@@ -6,7 +6,11 @@ Exercises
 1. Keep score by counting target hits.
 2. Vary the effect of gravity.
 3. Apply gravity to the targets.
+(done)
 4. Change the speed of the ball.
+5. The movement speed for the projectile and the balls is faster
+(done)
+6. Make the game never end, so that the balls reposition themselves when they go out of the window.
 """
 
 from random import randrange
@@ -81,9 +85,11 @@ def move():
 
     for target in targets:
         if not inside(target):
-            return
+            
+            target.x = 200
+            target.y = randrange(-150, 150)
 
-    ontimer(move, 50)
+    ontimer(move, 40)
 
 
 setup(420, 420, 370, 0)
